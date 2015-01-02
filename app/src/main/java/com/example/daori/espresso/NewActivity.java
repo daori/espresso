@@ -5,32 +5,29 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
-
-    public static final String USERNAME_FIELD = "usernameField";
+public class NewActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_new);
+        Intent intent = getIntent();
+        TextView result = (TextView) findViewById(R.id.result);
+
+        String message = intent.getStringExtra(MainActivity.USERNAME_FIELD);
+
+        result.setText(message);
     }
 
-
-    public void callNewActivity(View view){
-        Intent intent = new Intent(this, NewActivity.class);
-        EditText username = (EditText) findViewById(R.id.username);
-        intent.putExtra(USERNAME_FIELD, username.getText().toString());
-        startActivity(intent);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_new, menu);
         return true;
     }
 
