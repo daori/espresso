@@ -1,21 +1,18 @@
 package com.example.daori.espresso;
 
-import android.content.Intent;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.assertion.ViewAssertions;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.LargeTest;
 
-import static android.support.test.espresso.Espresso.*;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.*;
-import static android.support.test.espresso.assertion.ViewAssertions.*;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.*;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.example.daori.espresso.R.id.button_login;
 
 
 /**
@@ -23,25 +20,56 @@ import static com.example.daori.espresso.R.id.button_login;
  */
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
+    private MainActivity activity;
+    private String input;
+    private String inputUsername;
+
     public MainActivityTest(){
         super(MainActivity.class);
     }
 
     @Override
     public void setUp() throws Exception {
-        getActivity();
+        activity = getActivity();
     }
 
     public void testMainActivityShouldHaveLabelHelloWorldTest(){
         onView(withId(R.id.hello_world)).check(matches(withText(R.string.hello_world)));
     }
 
-    public void testClickButtonWithResultText(){
-        String text = "daori";
-        onView(withId(R.id.username)).perform(typeText(text));
-        onView(withId(R.id.password)).perform(typeText("password"));
-        onView(withId(R.id.button_login)).perform(click());
-        onView(withId(R.id.result)).check(ViewAssertions.matches(withText(text)));
+    @Given("^I open application$")
+    public void i_open_application() throws Throwable {
+        activity = getActivity();
     }
 
+    @Given("^I input text on username \"(.*?)\"$")
+    public void i_input_text_on_username(String arg1) throws Throwable {
+        onView(withId(R.id.username)).perform(typeText(arg1));
+    }
+
+    @Given("^I input text on password \"(.*?)\"$")
+    public void i_input_text_on_password(String arg1) throws Throwable {
+        onView(withId(R.id.password)).perform(typeText(arg1));
+    }
+
+    @When("^I click button login$")
+    public void i_click_button_login() throws Throwable {
+        onView(withId(R.id.button_login)).perform(click());
+    }
+
+    @Then("^I should see label with \"(.*?)\" text$")
+    public void i_should_see_label_with_text(String arg1) throws Throwable {
+        onView(withId(R.id.result)).check(matches(withText(arg1)));
+    }
+
+    @And("^I adding additional value$")
+    public void I_adding_additional_value() throws Throwable {
+        onView(withId(R.id.radioButton)).perform(click());
+        onView(withId(R.id.radioButton2)).perform(click());
+        onView(withId(R.id.radioButton)).perform(click());
+        onView(withId(R.id.checkbox1)).perform(click());
+        onView(withId(R.id.checkbox2)).perform(click());
+        onView(withId(R.id.checkbox3)).perform(click());
+        onView(withId(R.id.switch1)).perform(click());
+    }
 }

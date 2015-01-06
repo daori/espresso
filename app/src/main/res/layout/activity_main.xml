@@ -24,6 +24,55 @@
         android:password="true"
         android:hint="Password"/>
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Radio 1"
+            android:id="@+id/radioButton"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Radio 2"
+            android:id="@+id/radioButton2"
+            android:checked="false"/>
+
+    </RadioGroup>
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check 1"
+        android:id="@+id/checkbox1"
+        android:checked="false"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check 2"
+        android:id="@+id/checkbox2"
+        android:checked="false"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check 3"
+        android:id="@+id/checkbox3"
+        android:checked="false"/>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch"
+        android:id="@+id/switch1"
+        android:layout_gravity="center_horizontal"/>
+
     <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"

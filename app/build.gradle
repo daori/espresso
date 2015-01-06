@@ -6,9 +6,6 @@ android {
 
     packagingOptions {
         exclude 'LICENSE.txt'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE'
     }
 
     defaultConfig {
@@ -18,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.daori.espresso.tests.EspressoInstrumentation"
 
     }
     buildTypes {
@@ -33,6 +30,11 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    androidTestCompile 'info.cukes:cucumber-core:1.2.0'
+    androidTestCompile 'info.cukes:cucumber-java:1.2.0'
+    androidTestCompile 'info.cukes:gherkin:2.12.2'
+    androidTestCompile 'info.cukes:cucumber-html:0.2.3'
+    androidTestCompile 'info.cukes:cucumber-android:1.2.0@jar'
     compile 'com.android.support:support-annotations:21.0.3'
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'

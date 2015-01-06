@@ -7,11 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 
 public class MainActivity extends ActionBarActivity {
 
     public static final String USERNAME_FIELD = "usernameField";
+    public static final String PASSWORD_FIELD ="passwordField";
+    private static final String RADIO_FIELD_2 = "radioField2";
+    private static final String RADIO_FIELD_1 = "radioField2";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +28,13 @@ public class MainActivity extends ActionBarActivity {
     public void callNewActivity(View view){
         Intent intent = new Intent(this, NewActivity.class);
         EditText username = (EditText) findViewById(R.id.username);
+        EditText password = (EditText) findViewById(R.id.password);
+        RadioButton radioButton1 = (RadioButton) findViewById(R.id.radioButton);
+
         intent.putExtra(USERNAME_FIELD, username.getText().toString());
+        intent.putExtra(PASSWORD_FIELD, password.getText().toString());
+        intent.putExtra(RADIO_FIELD_1, radioButton1.getText().toString());
+        intent.putExtra(RADIO_FIELD_2, radioButton1.getText().toString());
         startActivity(intent);
     }
 
